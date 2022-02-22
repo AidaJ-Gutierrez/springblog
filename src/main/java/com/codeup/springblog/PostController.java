@@ -16,7 +16,7 @@ public class PostController {
 
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String usersPost(@PathVariable int id){
+    public String usersPost(@PathVariable long id){
         return "View " + id + "'s posts";
     }
 
