@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+
+<!--    Templating-->
+    <th:block th:include="partials/bootstrap.html :: styling">
+
+    </th:block>
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<h1>Hello and Welcome!</h1>
+<th:block th:include="partials/bootstrap.html :: scripts">
+
+</th:block>
+</body>
+</html>
