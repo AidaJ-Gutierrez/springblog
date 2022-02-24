@@ -5,16 +5,14 @@
     <title>Welcome</title>
 
 <!--    Templating-->
-    <th:block th:include="partials/bootstrap.html :: styling">
-
-    </th:block>
+    <th:block th:include="partials/header.html :: styling"></th:block>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <h1>Hello and Welcome!</h1>
-<th:block th:include="partials/bootstrap.html :: scripts">
+<th:block th:include="partials/footer.html :: scripts"></th:block>
 
-</th:block>
+
 </body>
 </html>

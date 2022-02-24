@@ -2,12 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>quotes</title>
+    <title>Title</title>
     <th:block th:include="partials/header.html :: styling"></th:block>
 </head>
 <body>
-<h1> Hello! Today's quote is from <span th:text="${author}"></span></h1>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
+
+
+<div>
+    <h2 th:text="${newPost.title}"></h2>
+    <p th:text=""${newPost.body}></p>
+</div>
 
 <th:block th:include="partials/footer.html :: scripts"></th:block>
 </body>

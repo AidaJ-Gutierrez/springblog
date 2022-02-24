@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Roll Dice</title>
+    <th:block th:include="partials/header.html :: styling"></th:block>
+</head>
+<body>
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+<div class="title">
+    <h2> Roll Dice</h2>
+</div>
+<div>
+    <div th:if="${userGuess == null}">
+        <button><a href="/roll-dice/1">1</a></button>
+        <button><a href="/roll-dice/2">2</a></button>
+        <button><a href="/roll-dice/3">3</a></button>
+        <button><a href="/roll-dice/4">4</a></button>
+        <button><a href="/roll-dice/5">5</a></button>
+        <button><a href="/roll-dice/6">6</a></button>
+    </div>
+
+    <div th:if="${userGuess != null}">
+        <h3>Your guess: <span th:text="${userGuess}"></span></h3>
+        <h3>Number rolled: <span th:text="${diceRoll}"></span></h3>
+        <h2 th:if="${isCorrect}">Awesome! You guessed correctly!</h2>
+        <h2 th:if="${!isCorrect}">Better luck next time!</h2>
+        <a href="/roll-dice">Try Again?</a>
+    </div>
+</div>
+
+
+
+<th:block th:include="partials/footer.html :: scripts"></th:block>
+</body>
+</html>

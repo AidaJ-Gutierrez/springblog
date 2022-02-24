@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Join</title>
+    <th:block th:include="partials/header.html :: styling"></th:block>
 </head>
 <body>
 <!DOCTYPE html>
@@ -12,6 +13,7 @@
     <title>Join</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <h1 th:text="${cohort}"></h1>
 
@@ -19,8 +21,6 @@
     <input type="text" name="cohort" id="cohort-ip" class="field" />
     <button>Join now</button>
 </form>
-
-</body>
-</html>
+<th:block th:include="partials/footer.html :: scripts"></th:block>
 </body>
 </html>
