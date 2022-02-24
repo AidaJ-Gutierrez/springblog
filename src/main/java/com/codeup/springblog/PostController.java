@@ -2,6 +2,7 @@ package com.codeup.springblog;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,9 +20,12 @@ public class PostController {
         allThePosts.add(new Post("This is one Post!", "This is the body"));
         allThePosts.add(new Post("This is one more!", "This is one more body"));
         model.addAttribute("posts", allThePosts);
-        return "post/index";
+        return "posts/index";
     }
-
+//    @GetMapping("/post/show")
+//    public String rollDice(){
+//        return "posts/show";
+//    }
 
 
     @GetMapping("/posts/{id}")
@@ -30,11 +34,10 @@ public class PostController {
        Post post = new Post("New Post", "New Body");
        model.addAttribute("postID", id);
        model.addAttribute("newPost", post);
-
-        return "post/show";
+        return "posts/show";
     }
 
-    @GetMapping("/posts/create")
+    @GetMapping("/post/create")
     @ResponseBody
     public String createPostForm(Model model){
         model.addAttribute("post", new Post());
