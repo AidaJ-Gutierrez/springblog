@@ -12,21 +12,26 @@ import java.util.List;
 public class PostController {
 
     @GetMapping(path = "/posts")
-    @ResponseBody
+//    @ResponseBody
 //    public String postsIndex(){return "Posts index page";}
     public  String postIndex(Model model){
         List<Post> allThePosts = new ArrayList<>();
-        allThePosts.add(new Post("This is Another Post!"));
-        model.addAttribute("post", allThePosts);
+        allThePosts.add(new Post("This is one Post!", "This is the body"));
+        allThePosts.add(new Post("This is one more!", "This is one more body"));
+        model.addAttribute("posts", allThePosts);
         return "post/index";
     }
 
 
 
-    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String individualPost(@PathVariable long id){
-        return "View an individual post";
+    @GetMapping("/posts/{id}")
+//    @ResponseBody
+    public String individualPost(@PathVariable long id, Model model){
+       Post post = new Post("New Post", "New Body");
+       model.addAttribute("postID", id);
+       model.addAttribute("newPost", post);
+
+        return "post/show";
     }
 
     @GetMapping("/posts/create")

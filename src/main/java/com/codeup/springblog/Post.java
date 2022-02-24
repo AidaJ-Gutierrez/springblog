@@ -9,6 +9,9 @@ public class Post {
         this.body = body;
     }
 
+    public Post(String new_post, String new_body) {
+    }
+
     public String getTitle() {
         return title;
     }
