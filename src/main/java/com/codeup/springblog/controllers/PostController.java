@@ -1,5 +1,6 @@
-package com.codeup.springblog;
+package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +18,8 @@ public class PostController {
 //    public String postsIndex(){return "Posts index page";}
     public  String postIndex(Model model){
         List<Post> allThePosts = new ArrayList<>();
-        allThePosts.add(new Post("This is one Post!", "This is the body"));
-        allThePosts.add(new Post("This is one more!", "This is one more body"));
+        allThePosts.add(new Post(1,"This is one Post!", "This is the body"));
+        allThePosts.add(new Post(2, "This is one more!", "This is one more body"));
         model.addAttribute("posts", allThePosts);
         return "posts/index";
     }
@@ -31,7 +32,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
 //    @ResponseBody
     public String individualPost(@PathVariable long id, Model model){
-       Post post = new Post("New Post", "New Body");
+       Post post = new Post(1,"New Post", "New Body");
        model.addAttribute("postID", id);
        model.addAttribute("newPost", post);
         return "posts/show";

@@ -15,7 +15,7 @@
 
     <h2 th:text="${postID}">ID</h2>
     <h2 th:text="${newPost.title}">Title</h2>
-    <p th:text="${newPost.body}">Content</p>
+    <div th:text="${newPost.body}">Content</div>
 </div>
 
 <th:block th:include="partials/footer.html :: scripts"></th:block>

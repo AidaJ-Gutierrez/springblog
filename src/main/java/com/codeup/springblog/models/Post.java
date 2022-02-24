@@ -1,15 +1,27 @@
-package com.codeup.springblog;
+package com.codeup.springblog.models;
 
 public class Post {
+    private long id;
     private String title;
     private String body;
 
     public Post() {
+        this.id = id;
         this.title = title;
         this.body = body;
     }
 
-    public Post(String new_post, String new_body) {
+
+
+    public Post(int i, String new_post, String new_body) {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {
