@@ -1,8 +1,5 @@
 package com.codeup.springblog.models;
 
-
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity
@@ -83,4 +80,5 @@ public class Post {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
 }
