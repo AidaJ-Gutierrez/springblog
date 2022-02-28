@@ -12,40 +12,29 @@ public class Post {
     @Column(nullable = false, length = 200)
     private String title;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String body;
 
     @ManyToOne
     @JoinColumn (name = "user_id")
-    private User owner;
+    private User user;
 
 
 
     public Post() {
     }
 
-    public Post(long id, String title, String body, User owner) {
+    public Post(long id, String title, String body, User user) {
         this.id = id;
         this.title = title;
         this.body = body;
-        this.owner = owner;
+        this.user = user;
     }
 
-    public Post(String title, String body) {
+    public Post(String title, String body, User user) {
         this.title = title;
         this.body = body;
-    }
-
-    public Post(String title, String body, User owner) {
-        this.title = title;
-        this.body = body;
-        this.owner = owner;
-    }
-
-    public Post(long id, String title, String body) {
-        this.id = id;
-        this.title = title;
-        this.body = body;
+        this.user = user;
     }
 
     //GETTERS AND SETTERS
@@ -73,12 +62,12 @@ public class Post {
         this.id = id;
     }
 
-    public User getOwner() {
-        return owner;
+    public User getUser() {
+        return user;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
