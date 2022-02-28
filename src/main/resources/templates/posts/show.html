@@ -16,6 +16,10 @@
     <h2 th:text="${postID}">ID</h2>
     <h2 th:text="${newPost.title}">Title</h2>
     <div th:text="${newPost.body}">Content</div>
+    <a th:href="@{|/posts/edit/${postID}|}">Edit Post</a>
+    <form th:action="@{|/posts/delete/${postID}|}" th:method="post">
+        <button type="submit">Delete</button>
+    </form>
 </div>
 
 <th:block th:include="partials/footer.html :: scripts"></th:block>

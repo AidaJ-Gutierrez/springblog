@@ -1,7 +1,5 @@
 package com.codeup.springblog.models;
 
-import org.springframework.data.annotation.Id;
-
 import java.util.List;
 import javax.persistence.*;
 
@@ -21,8 +19,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-    private List<Post> posts;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+//    private List<Post> posts;
 
     public User() {
     }
@@ -66,13 +64,13 @@ public class User {
         this.email = email;
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
+//    public List<Post> getPosts() {
+//        return posts;
+//    }
+//
+//    public void setPosts(List<Post> posts) {
+//        this.posts = posts;
+//    }
 
 
 }
