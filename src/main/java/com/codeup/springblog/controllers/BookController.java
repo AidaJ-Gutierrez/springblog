@@ -2,6 +2,7 @@ package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Book;
 import com.codeup.springblog.repositories.BookRepository;
+import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,8 @@ public class BookController {
     private BookRepository bookDao;
 //    private AuthorRepository authorsDao;
 //   private GenreRepository genreDao;
+
+//    private final EmailService emailService;
 
 
     public BookController(BookRepository bookDao){
@@ -35,5 +38,13 @@ public class BookController {
 //        book.setAuthor(authorsDao.getById(1L));
 //
 //    }
+
+
+    //for email services
+//
+//    @GetMapping
+//    public String sendMail()(
+//            emailService.prepareAndSend("Testing", "Did this work")
+//            )
 
 }
