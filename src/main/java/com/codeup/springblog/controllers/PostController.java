@@ -17,11 +17,11 @@ public class PostController {
 
 
     private final PostRepository postDao;
-    private final UserRepository userDao;
+    private final UserRepository userDao;//injected to the controller
 
     public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
-        this.userDao = userDao;
+        this.userDao = userDao;//injected to the controller
     }
 
 
