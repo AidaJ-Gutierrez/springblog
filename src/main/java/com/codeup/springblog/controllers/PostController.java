@@ -15,67 +15,69 @@ import java.util.List;
 @Controller
 public class PostController {
 
-
     private final PostRepository postDao;
-    private final UserRepository userDao;//injected to the controller
+    private final UserRepository userDao;
+
 
     public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
-        this.userDao = userDao;//injected to the controller
+        this.userDao = userDao;
     }
 
+    @GetMapping("/posts")
+    public String post(Model model) {
+        List<Post> allPosts = postDao.findAll();
+        model.addAttribute("allPosts", allPosts);
 
-    @GetMapping(path = "/posts")
-    public  String postIndex(Model model){
-        List<Post> allThePosts = postDao.findAll();
-        model.addAttribute("allThePosts", allThePosts);
-        return "posts/index";
+
+        return "/posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    public String individualPost(@PathVariable long id, Model model){
-       Post post = postDao.getById(id);
-       model.addAttribute("postID", id);
-       model.addAttribute("newPost", post);
-        return "posts/show";
+    public String postId(@PathVariable long id, Model model) {
+
+        Post onePost = postDao.findPostById(id);
+        model.addAttribute("onePost", onePost);
+
+
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")
-
-    public String createPostForm(Model model){
-        model.addAttribute("newPost", new Post());
-        return "post/create";
+    public String viewCreate(Model model) {
+        model.addAttribute("post", new Post());
+        return "/posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post) {
-        post.setUser(userDao.getById(1L));
+    public String postCreate(@ModelAttribute Post post) {
+        User user = userDao.getById(1L);
+        post.setUser(user);
         postDao.save(post);
         return "redirect:/posts";
     }
+
     @GetMapping("/posts/{id}/edit")
-    public String showEditForm(@PathVariable long id, Model model) {
-        Post posttoEdit = postDao.getById(id);
-        model.addAttribute("postToEdit", posttoEdit.getId());
-        return "posts/edit";
+    public String viewEdit(@PathVariable long id, Model model) {
+        Post editPost = postDao.getById(id);
+        model.addAttribute("post", editPost);
+
+        return "/posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String submitEdit(@PathVariable long id, @ModelAttribute Post post) {
-        Post postToEdit = postDao.getById(id);
-        postToEdit.setTitle(post.getTitle());
-        postToEdit.setBody(post.getBody());
-        postDao.save(postToEdit);
-
+    public String postEdit(@PathVariable long id, @ModelAttribute Post post) {
+        Post postEdit = postDao.getById(id);
+        postEdit.setTitle(post.getTitle());
+        postEdit.setBody(post.getBody());
+        postDao.save(postEdit);
         return "redirect:/posts";
     }
 
-
     @GetMapping("/posts/{id}/delete")
-    public String delete(@PathVariable long id) {
+    public String postDelete(@PathVariable long id) {
         postDao.deleteById(id);
         return "redirect:/posts";
     }
-
 
 }

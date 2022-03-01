@@ -1,17 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Post</title>
+    <title>Edit</title>
+    <th:block th:include="partials/header.html :: styling"></th:block>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
-<form th:action="@{|/posts/edit/${id}|}" th:method="post" th:object="${postToEdit}">
+<form th:action="@{/posts/{id}/edit (id = ${post.getId()})}" th:method="post" th:object="${post}"  style="width: 50%">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" th:field="*{title}"  th:value="${post.getTitle()}">
 
-    <input type="text">
-    <input type="text" name="title" placeholder="title" th:field="*{title}">
-    <input type="text" name="body" placeholder="body" th:field="*{body}">
-    <input type="submit">
+    </div>
+    <div class="form-group">
+        <label for="Body">Body</label>
+        <input type="text" class="form-control"  id="Body" th:field="*{body}" th:value="${post.getBody()}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<th:block th:include="partials/footer.html :: scripts"></th:block>
+
 </body>
 </html>
