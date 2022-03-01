@@ -6,15 +6,15 @@
     <th:block th:include="partials/bootstrap :: styling"></th:block>
 </head>
 <body>
-<form th:action="@{/posts/create}" th:method="POST">
+<form th:action="@{/posts/create}" th:method="POST" th:object="${posts}">
     <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="title">
+        <input type="text" class="form-control" id="title" name="title"type="text" th:field="*{title}" placeholder="title">
     </div>
 
     <div class="form-group">
         <label for="body">Body</label>
-        <textarea class="form-control" id="body" rows="3" name="body"></textarea>
+        <textarea class="form-control" id="body" rows="3" name="body" type="text" th:field="*{body}" placeholder="body"></textarea>
     </div>
     <button type="submit">Submit</button>
 </form>

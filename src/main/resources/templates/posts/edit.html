@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<form th:action="@{|/posts/edit/${id}|}" th:method="post">
+<form th:action="@{|/posts/edit/${id}|}" th:method="post" th:object="${postToEdit}">
 
     <input type="text">
-    <input type="text" name="title" placeholder="title">
-    <input type="text" name="body" placeholder="body">
+    <input type="text" name="title" placeholder="title" th:field="*{title}">
+    <input type="text" name="body" placeholder="body" th:field="*{body}">
     <input type="submit">
 </form>
 </body>
