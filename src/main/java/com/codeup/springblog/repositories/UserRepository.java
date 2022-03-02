@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 //Create a UserRepository interface and inject it into the PostController:
 public interface UserRepository extends JpaRepository <User, Long>{
+    User findByUsername(String username);
 
 }
 
