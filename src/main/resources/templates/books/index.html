@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,6 +5,7 @@
     <title>Library</title>
 </head>
 <body>
+<h1>Notable Books:</h1>
 <ul>
     <li th:each="book : ${allBooks}">
         <u th:text="${book.title}"></u> by <span th:text="${book.author.name}"></span><span th:each="genre : ${book.genres}"> [<a th:href="@{/genres/{id} (id = ${genre.getId()})}" th:text="${genre.getName()}"></a>] </span>
