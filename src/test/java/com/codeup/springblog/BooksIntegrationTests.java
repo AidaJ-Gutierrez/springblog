@@ -1,13 +1,12 @@
 package com.codeup.springblog;
 
-
+import com.codeup.springblog.SpringblogApplication;
 import com.codeup.springblog.models.Book;
 import com.codeup.springblog.models.User;
-import com.codeup.springblog.repositories.AuthorRepository;
 import com.codeup.springblog.repositories.BookRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,16 +17,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
-
 import javax.servlet.http.HttpSession;
-
+import java.util.Arrays;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringblogApplication.class)
@@ -130,17 +130,19 @@ public class BooksIntegrationTests {
     @Test
     public void testEditBook() throws Exception {
         Book existingBook = bookDao.findAll().get(0);
-
         // Makes a post request to /books/{id}/edit and expect a redirection to the Book show page
         this.mvc.perform(post("/books/" + existingBook.getId() + "/edit").with(csrf())
                         .session((MockHttpSession) httpSession)
-                        .param("title", "edited title"))
-                .andExpect(status().is3xxRedirection());
+                        .param("title", "new edit title")
+                        .param("genres", "6"))
+                        .andExpect(status().is3xxRedirection());
         // Makes a get request to /books/{id}/edit and expect a redirection to the book show page.
         this.mvc.perform(get("/books/" + existingBook.getId()))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("edited title")));
+                .andExpect(content().string(containsString("has rabbits")))
+                .andExpect(content().string(containsString("new edit title")));
     }
+
 
     // DELETE
     @Test
